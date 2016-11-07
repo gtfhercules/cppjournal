@@ -92,7 +92,7 @@ void check_settings()
 	settings.open("settings.txt");
 	getline(settings, valid_directory);
 	
-	if (PathIsDirectory(valid_directory.c_str) == true)
+	if (PathIsDirectory(valid_directory.c_str) )
 	{
 	
 	}
