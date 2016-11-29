@@ -9,7 +9,7 @@ using namespace std;
 
 
 
-void check_settings();
+//void check_settings();
 void menu();
 void create_entry();
 void view_entry();
@@ -82,9 +82,9 @@ int main()
 	
 }
 
-void check_settings()
+/*void check_settings()
 {
-	bool directory_exists;
+
 	ifstream settings;
 	string valid_directory;
 	string new_directory;
@@ -92,7 +92,7 @@ void check_settings()
 	settings.open("settings.txt");
 	getline(settings, valid_directory);
 	
-	if (PathIsDirectory(valid_directory.c_str) )
+	if (PathIsDirectory(valid_directory.c_str() ) )
 	{
 	
 	}
@@ -160,7 +160,7 @@ void check_settings()
 	
 
 
-}
+} */
 
 
 void menu()
@@ -182,17 +182,18 @@ void create_entry() {
 	string directory;
 	string file_name;
 	string entry;
-	string mom;
+	
 		
 	settings.open("settings.txt");
-	getline(settings, mom);
+	getline(settings, directory);
+	
 	cout << "You have chosen to create a new entry." << endl;
 	Sleep(1000); //It makes things neater.
 	cout << "What do you want your entry to be named?" << endl;
 	cin.ignore();
 	getline(cin,file_name); //What this line and the following line do is allow you to 
 	file_name += ".txt"; //Create whatever name you want for your text file.
-	ofstream out(mom + file_name); //This writes the file to the disk.
+	ofstream out(directory + file_name); //This writes the file to the disk.
 	cout << "Alright, file created. What's on your mind?" << endl;
 	cout << endl;
 	getline(cin, entry);
