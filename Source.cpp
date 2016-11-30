@@ -5,6 +5,7 @@
 #include <ctime>
 #include <fstream>
 #include <Shlwapi.h>
+
 using namespace std;
 
 
@@ -84,7 +85,7 @@ int main()
 
 void check_settings()
 {
-	bool directory_exists;
+	//bool directory_exists;
 	ifstream settings;
 	string valid_directory;
 	string new_directory;
@@ -92,7 +93,7 @@ void check_settings()
 	settings.open("settings.txt");
 	getline(settings, valid_directory);
 	
-	if (PathIsDirectory(valid_directory.c_str) )
+	if (PathIsDirectory("C:\\Projects"))
 	{
 	
 	}
