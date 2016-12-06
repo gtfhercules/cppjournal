@@ -4,12 +4,29 @@
 #include <ShlObj.h>
 #include <ctime>
 #include <fstream>
-#include <Shlwapi.h>
+#include <lmcons.h>
+#include <Shlwapi.h> 
+#include <limits>
+
+#pragma comment(lib, "Shlwapi.lib")
+
+/*
+This block will serve as documentation on why I chose to do things in the way I did them.
+
+I used the Sleep(time) commands in to make things look much neater than if I just simply printed onto the screen.
+
+
+
+
+*/
+
+
+
 using namespace std;
 
 
 
-//void check_settings();
+void check_settings();
 void menu();
 void create_entry();
 void view_entry();
@@ -19,10 +36,34 @@ void exit_program();
 void view_folder();
 void credits();
 
+class localtime
+{
+public:
+	time_t now = time(0);
+	char* dt = ctime(&now);
+	
+};
+
+
+
+
+
+
+
+
+
 int main()
 {
 	
+	check_settings();
+	
+	
 	int choice;
+	
+
+	
+	
+	
 	cout << "Welcome to the SSD Journal Application!" << endl;
 	
 
@@ -82,43 +123,50 @@ int main()
 	
 }
 
-/*void check_settings()
+void check_settings()
 {
 
 	ifstream settings;
 	string valid_directory;
 	string new_directory;
 	int choice;
+	int choice2;
+	
+
 	settings.open("settings.txt");
 	getline(settings, valid_directory);
 	
-	if (PathIsDirectory(valid_directory.c_str() ) )
+	if (PathIsDirectory(valid_directory.c_str()))
 	{
 	
+		
+
 	}
 	else {
 		cout << "It appears you do not have a settings.txt file." << endl;
-		Sleep(750);
+		Sleep(1000);
 		cout << "This program will not function without a settings.txt file." << endl;
-		Sleep(750);
+		Sleep(1000);
 		cout << "Would you like to set up the save directory?" << endl;
-		Sleep(750);
+		Sleep(1000);
 		cout << "The other options can be configured in the settings menu at a later time." << endl;
-		Sleep(500);
+		Sleep(1000);
 		cout << "1. Yes" << endl;
-		Sleep(500);
 		cout << "2. No" << endl;
+		cout << "Enter your choice:" << endl;
 		cin >> choice;
 		if (choice == 1)
 		{
+			
 			Sleep(1000);
 			cout << "Alright, do you want to use an existing directory, or create a new one?" << endl;
-			Sleep(500);
+			Sleep(1000);
 			cout << "1. Use an existing directory" << endl;
-			Sleep(500);
+			Sleep(1000);
 			cout << "2. Create new directory" << endl;
+			cin >> choice2;
 			do {
-				if (choice == 1) 
+				if (choice2 == 1) 
 				{
 					ofstream settings;
 					string directory;
@@ -135,8 +183,9 @@ int main()
 					cout << endl;
 					break;
 					
+					
 				}
-				else if (choice == 2)
+				else if (choice2 == 2)
 				{
 					new_dir();
 					break;
@@ -147,7 +196,7 @@ int main()
 				}
 
 
-			} while (choice !=2);
+			} while (choice2 !=2);
 
 
 		}
@@ -160,7 +209,7 @@ int main()
 	
 
 
-} */
+} 
 
 
 void menu()
@@ -183,12 +232,19 @@ void create_entry() {
 	string file_name;
 	string entry;
 	
-		
+//	time_t currentTime;
+	
+	char username[UNLEN + 1];
+	DWORD username_len = UNLEN + 1;
+	GetUserName(username, &username_len);
+
+
 	settings.open("settings.txt");
 	getline(settings, directory);
+
 	
 	cout << "You have chosen to create a new entry." << endl;
-	Sleep(1000); //It makes things neater.
+	Sleep(1000); 
 	cout << "What do you want your entry to be named?" << endl;
 	cin.ignore();
 	getline(cin,file_name); //What this line and the following line do is allow you to 
@@ -198,6 +254,9 @@ void create_entry() {
 	cout << endl;
 	getline(cin, entry);
 	out << entry;
+	out << "\n";
+	out << "\n";
+	out << "Created by " << username << endl;
 	cout << "Entry saved. Returning to main menu..." << endl;
 	Sleep(1000);
 	settings.close(); //This closes the settings file so you can modify it.
@@ -337,9 +396,12 @@ void settings() {
 			break;
 		}
 		if (selection == 2) {
-			cout << "This feature is coming soon!" << endl;
-			cout << "Returning to main menu..." << endl;
-			cout << endl;
+			//ofstream timedate;
+			//timedate.open("settings.txt");
+			cout << "Coming soon!" << endl;
+
+
+
 			break;
 		}
 

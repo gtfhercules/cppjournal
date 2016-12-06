@@ -83,6 +83,10 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>C:\Program Files\Microsoft Visual Studio 8\VC\PlatformSDK\Lib</AdditionalLibraryDirectories>
+      <AdditionalOptions>ComCtl32.Lib ComDlg32.Lib %(AdditionalOptions)</AdditionalOptions>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
