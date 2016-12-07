@@ -24,6 +24,10 @@ I used the Sleep(time) commands in to make things look much neater than if I jus
 
 using namespace std;
 
+int toggle_username();
+int additional_signature();
+
+
 
 
 void check_settings();
@@ -36,8 +40,12 @@ void exit_program();
 void view_folder();
 void credits();
 
+
 class localtime
 {
+	int hours, minutes, seconds;
+	int month, day, year;
+
 public:
 	time_t now = time(0);
 	char* dt = ctime(&now);
@@ -219,7 +227,7 @@ void menu()
 	cout << "2. View existing entry" << endl;
 	cout << "3. Create new folder" << endl;
 	cout << "4. Settings" << endl;
-	cout << "5. View default save folder" << endl;
+	cout << "5. View save folder" << endl;
 	cout << "6. View credits" << endl;
 	cout << "7. Exit program" << endl;
 	cout << "So, what's next?" << endl;
@@ -232,7 +240,7 @@ void create_entry() {
 	string file_name;
 	string entry;
 	
-//	time_t currentTime;
+
 	
 	char username[UNLEN + 1];
 	DWORD username_len = UNLEN + 1;
@@ -256,6 +264,8 @@ void create_entry() {
 	out << entry;
 	out << "\n";
 	out << "\n";
+	
+	
 	out << "Created by " << username << endl;
 	cout << "Entry saved. Returning to main menu..." << endl;
 	Sleep(1000);
@@ -373,7 +383,9 @@ void settings() {
 	Sleep(500);
 	cout << "1. Change save directory" << endl;
 	cout << "2. Automatically add the date to an entry (Coming soon!)" << endl;
-	cout << "3. Go back" << endl;
+	cout << "3. Add your username to the end of an entry" << endl;
+	cout << "4  Add an additional signature" << endl;
+	cout << "5. Go back" << endl;
 	cout << "What would you like to do?" << endl;
 	cin >> selection;
 
@@ -415,6 +427,27 @@ void settings() {
 	} while (selection != 3);
 
 }
+
+int toggle_username()
+{
+	int dummy;
+	int toggle;
+	ifstream settings;
+	settings.open("settings.txt");
+	settings >> dummy;
+	settings >> toggle;
+	settings.close();
+	return toggle;
+
+}
+
+int additional_signature()
+{
+	return 0;
+
+
+}
+
 
 
 void view_folder(){
